@@ -1,0 +1,17 @@
+[project]
+name = "playwright-python-demo-tests"
+version = "0.1.0"
+description = "Playwright and pytest demo end-to-end tests"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "allure-pytest>=2.15,<3.0",
+    "playwright>=1.58,<2.0",
+    "pytest>=9.0,<10.0",
+    "pytest-playwright>=0.7,<0.8",
+    "pytest-xdist>=3.8,<4.0",
+    "python-slugify>=8.0,<9.0",
+]
+
+[tool.uv]
+package = false

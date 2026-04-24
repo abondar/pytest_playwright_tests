@@ -29,42 +29,50 @@ For these tests I use a Sauce Labs demo app which can be found here: [Sauce Demo
 And a demo shop site named as the Danube, with can be found here: [Danube Shop](https://danube-web.shop/)
 
 ## Requirements
-- Python >= 3.9 - [How install Python](https://www.python.org/downloads/)
-- Pip >= 21.3.x - [How install pip](https://pip.pypa.io/en/stable/installing/)
+- uv - [How to install uv](https://docs.astral.sh/uv/getting-started/installation/)
 - Allure Client >= 2.21 [How install allure client](https://docs.qameta.io/allure/#_commandline)
 
+The project is configured for Python 3.11 via `.python-version`. Dependencies are managed in `pyproject.toml`, and `uv.lock` keeps installs reproducible.
+
 ## Getting Started
-Create a virtual environment:
+Install dependencies and Playwright browsers:
 
 ```bash
-$ python -m venv venv
-$ source venv/bin/activate
+$ make install
 ```
 
-Install dependencies:
+If you prefer the raw uv commands:
 
 ```bash
-$ pip3 install --no-cache-dir -r requirements.txt
+$ uv python install 3.11
+$ uv lock
+$ uv sync --python 3.11
+$ uv run playwright install
 ```
 
-## Configure Playwright:
+## To run all tests
 ```bash
-$ playwright install
+$ make test
+```
+
+## To run the test file with verbose output
+```bash
+$ make test-file
 ```
 
 ## To run tests in Chrome (for headless mode remove --headed parameter)
 ```bash
-$ pytest -vv --headed --browser chromium --alluredir=results/allure_report
+$ make test-headed
 ```
 
-## To run tests in firefox Browser (for headless mode remove --headed parameter):
+## To run tests in Firefox Browser (for headless mode remove --headed parameter):
 ```bash
-$ pytest -vv --headed --browser firefox --alluredir=results/allure_report
+$ make test-firefox
 ```
 
 ## To run tests with slo-mo mode
 ```bash
-$ pytest -vv --headed --browser chrome --slowmo 500 --alluredir=results/allure_report
+$ make test-slowmo
 ```
 
 ![Test Execution](img/test_execution.gif)
@@ -203,7 +211,12 @@ reach page.pause() debug test is paused.
 
 For debug a specific test scenario:
 ```bash
-$ PWDEBUG=1 pytest --browser chromium test_playwright_demo.py::TestPlaywrightDemo::test_add_product_backpack
+$ make debug
+```
+
+Equivalent uv command:
+```bash
+$ PWDEBUG=1 uv run pytest --browser chromium test_playwright_demo.py::TestPlaywrightDemo::test_add_product_backpack
 ```
 
 ```Python
@@ -227,7 +240,7 @@ def test_api_intercept(self, context_clean):
 If any test fail, the trace file is attach in the report, for see and debug with the trace execute the command:
 
 ```bash
-$ playwright show-trace FILE-NAME.ZIP
+$ uv run playwright show-trace FILE-NAME.ZIP
 ```
 ![Trace](img/trace_viewer.gif)
 
@@ -292,11 +305,11 @@ def pytest_runtest_makereport(item, call):
 Run the command below to generate the test report:
 
 ```bash
-$ allure generate --clean results/allure_report -o results/allure_result 
+$ make allure-generate
 ```
 
 To view the report in the browser:
 
 ```bash
-$ allure open results/allure_result
+$ make allure-open
 ```
