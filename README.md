@@ -50,27 +50,39 @@ $ uv sync --python 3.11
 $ uv run playwright install
 ```
 
-## To run all tests
+## Run tests through the Makefile
+After `make install`, you can use the Makefile targets below for the most common test workflows:
+
+- `make test` - run `test_playwright_demo.py`
+- `make test-file` - run the same file with verbose output
+- `make test-headed` - run the suite in headed Chromium and generate Allure results in `results/allure_report`
+- `make test-firefox` - run the suite in headed Firefox and generate Allure results in `results/allure_report`
+- `make test-slowmo` - run the suite in headed Chrome with `--slowmo 500`
+- `make debug` - open Playwright Inspector for `test_add_product_backpack`
+
+Examples:
+
+### Run all tests
 ```bash
 $ make test
 ```
 
-## To run the test file with verbose output
+### Run the test file with verbose output
 ```bash
 $ make test-file
 ```
 
-## To run tests in Chrome (for headless mode remove --headed parameter)
+### Run tests in Chrome (for headless mode remove --headed parameter)
 ```bash
 $ make test-headed
 ```
 
-## To run tests in Firefox Browser (for headless mode remove --headed parameter):
+### Run tests in Firefox Browser (for headless mode remove --headed parameter):
 ```bash
 $ make test-firefox
 ```
 
-## To run tests with slo-mo mode
+### Run tests with slo-mo mode
 ```bash
 $ make test-slowmo
 ```
