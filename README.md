@@ -50,50 +50,27 @@ $ uv sync --python 3.11
 $ uv run playwright install
 ```
 
-## Project Structure
-The main files and folders are:
-
-- `test_playwright_demo.py` - demo end-to-end tests that exercise Playwright, Pytest fixtures, network interception, API mocking, screenshots, traces, and debugging workflows
-- `conftest.py` - shared browser context fixtures, login setup, default viewport and timeout settings, plus failure hooks for screenshots and traces
-- `fixtures/users.json` - Sauce Demo users used by the session login fixture
-- `standard_user_state.json` and `problem_user_state.json` - saved authenticated browser states generated from the fixture login flow
-- `traces/` - Playwright trace files saved for failed tests
-- `img/` - screenshots and GIFs used by this README
-- `Makefile` - common install, test, debug, and Allure report commands
-
-## Run tests through the Makefile
-After `make install`, you can use the Makefile targets below for the most common test workflows:
-
-- `make test` - run `test_playwright_demo.py`
-- `make test-file` - run the same file with verbose output
-- `make test-headed` - run the suite in headed Chromium and generate Allure results in `results/allure_report`
-- `make test-firefox` - run the suite in headed Firefox and generate Allure results in `results/allure_report`
-- `make test-slowmo` - run the suite in headed Chrome with `--slowmo 500`
-- `make debug` - open Playwright Inspector for `test_add_product_backpack`
-
-Examples:
-
-### Run all tests
+## To run all tests
 ```bash
 $ make test
 ```
 
-### Run the test file with verbose output
+## To run the test file with verbose output
 ```bash
 $ make test-file
 ```
 
-### Run tests in Chrome (for headless mode remove --headed parameter)
+## To run tests in Chrome (for headless mode remove --headed parameter)
 ```bash
 $ make test-headed
 ```
 
-### Run tests in Firefox Browser (for headless mode remove --headed parameter):
+## To run tests in Firefox Browser (for headless mode remove --headed parameter):
 ```bash
 $ make test-firefox
 ```
 
-### Run tests with slo-mo mode
+## To run tests with slo-mo mode
 ```bash
 $ make test-slowmo
 ```
