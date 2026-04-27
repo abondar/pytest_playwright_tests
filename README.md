@@ -50,6 +50,19 @@ $ uv sync --python 3.11
 $ uv run playwright install
 ```
 
+## Project Structure
+The main files and folders are:
+
+- `test_playwright_demo.py` - demo end-to-end tests that cover Playwright flows, API interception, request mocking, screenshots, traces, and debugging examples
+- `conftest.py` - shared browser fixtures, authenticated contexts, viewport configuration, and failure hooks for screenshots and traces
+- `fixtures/users.json` - Sauce Demo user data used to prepare authenticated sessions
+- `standard_user_state.json` and `problem_user_state.json` - saved authenticated browser states created from the login setup
+- `Makefile` - common install, test, debug, and Allure report commands
+- `pyproject.toml` and `uv.lock` - project dependencies and reproducible uv-managed environment
+- `utils/` - shared helper utilities such as reading user data
+- `img/` - screenshots and GIFs used in this documentation
+- `traces/` - Playwright trace files saved for failed tests
+
 ## To run all tests
 ```bash
 $ make test
