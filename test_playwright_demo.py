@@ -37,6 +37,15 @@ class TestPlaywrightDemo:
         self.cart_container = self.page.locator(".cart_contents_container")
         expect(self.cart_container).to_contain_text("Sauce Labs Backpack")
 
+    # This test validates whether the cart badge is updated when one product is added
+    def test_add_product_backpack_updates_cart_badge(self, context_standard_user):
+        self.page = context_standard_user.new_page()
+        self.page.goto("https://www.saucedemo.com/inventory.html")
+        self.add_to_cart_backpack_button = self.page.locator("#add-to-cart-sauce-labs-backpack")
+        self.add_to_cart_backpack_button.click()
+        self.shopping_cart_badge = self.page.locator(".shopping_cart_badge")
+        expect(self.shopping_cart_badge).to_have_text("1")
+
     # This one demonstrates the use of interception of page requests (Network events) for backend validation
     def test_api_intercept(self, context_clean):
         self.page = context_clean.new_page()
