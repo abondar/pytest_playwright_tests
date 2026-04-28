@@ -1,10 +1,8 @@
 # Playwright Python demo tests
 
-> Temporary README update for git workflow verification.
+This project demonstrates some Playwright features for end-to-end test automation using Python and Pytest.
 
-In this project I demonstrate some features of Playwright framework with Python and Pytest,for automation E2E tests.
-
-The tests code is simple,for that reason I don't use PageObject, abstraction and others design patterns, the objective this project is show a configuration of Playwright and some of its features.
+The test code is intentionally simple. For that reason, it does not use Page Objects or other abstraction patterns — the goal is to showcase the project configuration and some core Playwright capabilities.
 
 This project includes:
 
@@ -15,21 +13,22 @@ This project includes:
 
 
 - Features:
-    - Tests in multiple browser and pages
-    - Authenticated test sessions with signed states
-    - Validate shopping cart badge updates after adding a product
-    - Intercepting page requests (Network Events)
-    - Mock page requests
-    - Screenshot on fail and attach to report
-    - Generate trace file on fail and attach to report
-    - Using trace file for debug failed test
-    - Debug tests with interactive Playwright Inspector
-    - Configuration and use of Pytest fixtures 
-    - Report with Allure
-    
+    - Tests with multiple browser contexts and pages
+    - Authenticated test sessions with saved storage states
+    - Shopping cart badge validation after adding a product
+    - Intercepting page requests (network events)
+    - Mocking page requests
+    - Screenshot capture on failure with report attachment
+    - Trace file generation on failure with report attachment
+    - Trace-based debugging for failed tests
+    - Interactive debugging with Playwright Inspector
+    - Pytest fixture-based configuration
+    - Allure reporting
+
 ## Demo Pages
-For these tests I use a Sauce Labs demo app which can be found here: [Sauce Demo](https://www.saucedemo.com/)
-And a demo shop site named as the Danube, with can be found here: [Danube Shop](https://danube-web.shop/)
+These tests use two demo applications:
+- [Sauce Demo](https://www.saucedemo.com/)
+- [Danube Shop](https://danube-web.shop/)
 
 ## Requirements
 - uv - [How to install uv](https://docs.astral.sh/uv/getting-started/installation/)
@@ -81,17 +80,13 @@ $ make test-slowmo
 ![Test Execution](img/test_execution.gif)
 
 ## Tests with multiple browser instances (contexts) and multiple pages
-With playwright all tests is isolated with contexts and pages, in this project all the browser contexts are defined as 
-fixtures, in file conftest.py is possible change and create new contexts. 
+With Playwright, all tests are isolated through browser contexts and pages. In this project, browser contexts are defined as fixtures in `conftest.py`, where you can also update existing contexts or create new ones.
 
->IMPORTANT any context created must have the 
-word "context_" at the beginning of the name, if the context is created without this section then the screenshot or 
-trace files will not be automatically saved in case of failure.
+> IMPORTANT: Any context created must start with the prefix `context_`. Otherwise, screenshots and trace files will not be saved automatically when a test fails.
 
-> Inside conftest.py there is a login function that will authenticate using the users from the 
-> fixtures/users.json file, for each user the function save a authenticated state file
+> Inside `conftest.py`, the `login` fixture authenticates the users from `fixtures/users.json` and saves an authenticated storage state file for each one.
 
-> If login fails, the test suite is aborted
+> If login fails, the test suite is aborted.
 
 Example of context as fixture using saved authenticated state for user Standard:
 
@@ -223,10 +218,9 @@ def test_mock_api(self, context_clean):
 ![After Mock](img/after_mock.png)
 
 ## Interactive Debug
-Set the PWDEBUG environment variable to run your Playwright tests in debug mode or just add page.pause() on code.
+Set the `PWDEBUG` environment variable to run your Playwright tests in debug mode, or add `page.pause()` in the test code.
 This configures Playwright for debugging and opens the inspector.
-When add the command page.pause() in the code snippets, when the test 
-reach page.pause() debug test is paused.
+When the test reaches `page.pause()`, execution is paused so you can inspect the current state interactively.
 
 For debug a specific test scenario:
 ```bash
@@ -256,7 +250,7 @@ def test_api_intercept(self, context_clean):
 ![Interactive debug](img/interactive_debug.gif)
 
 ## Trace viewer
-If any test fail, the trace file is attach in the report, for see and debug with the trace execute the command:
+If any test fails, the trace file is attached to the report. To inspect and debug it, run the following command:
 
 ```bash
 $ uv run playwright show-trace FILE-NAME.ZIP
