@@ -1,5 +1,7 @@
 # Playwright Python demo tests
 
+> Temporary README update for git workflow verification.
+
 In this project I demonstrate some features of Playwright framework with Python and Pytest,for automation E2E tests.
 
 The tests code is simple,for that reason I don't use PageObject, abstraction and others design patterns, the objective this project is show a configuration of Playwright and some of its features.
