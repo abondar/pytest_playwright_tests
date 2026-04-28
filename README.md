@@ -17,6 +17,7 @@ This project includes:
 - Features:
     - Tests in multiple browser and pages
     - Authenticated test sessions with signed states
+    - Validate shopping cart badge updates after adding a product
     - Intercepting page requests (Network Events)
     - Mock page requests
     - Screenshot on fail and attach to report
@@ -127,6 +128,22 @@ def test_with_multiple_context_and_pages_authenticated(self, context_problem_use
       expect(self.logo_two).to_have_text("Swag Labs")
 ```
 
+## Validate shopping cart badge updates
+This example validates an edge case on Sauce Demo: after adding a single product, the shopping cart badge must show the correct quantity.
+
+```Python
+# test_playwright_demo.py
+
+from playwright.sync_api import expect
+
+def test_add_product_backpack_updates_cart_badge(self, context_standard_user):
+    self.page = context_standard_user.new_page()
+    self.page.goto("https://www.saucedemo.com/inventory.html")
+    self.add_to_cart_backpack_button = self.page.locator("#add-to-cart-sauce-labs-backpack")
+    self.add_to_cart_backpack_button.click()
+    self.shopping_cart_badge = self.page.locator(".shopping_cart_badge")
+    expect(self.shopping_cart_badge).to_have_text("1")
+```
 
 ## Intercepting page requests (Network Events)
 Playwright provides APIs to monitor and modify network traffic, both HTTP and HTTPS. Any requests that a page does, 
