@@ -1,5 +1,7 @@
 # Playwright Python demo tests
 
+> Temporary note: README content is currently being updated and may receive additional revisions.
+
 This project demonstrates some Playwright features for end-to-end test automation using Python and Pytest.
 
 The test code is intentionally simple. For that reason, it does not use Page Objects or other abstraction patterns — the goal is to showcase the project configuration and some core Playwright capabilities.
