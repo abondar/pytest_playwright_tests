@@ -1,5 +1,7 @@
 import json
 
+# Temporary no-op change for git workflow verification.
+
 
 def get_user_data(user_name):
     with open('fixtures/users.json') as test_data:

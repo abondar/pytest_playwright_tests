@@ -3,6 +3,7 @@ import json
 from playwright.sync_api import expect
 from operator import itemgetter
 
+# Temporary no-op change for git workflow verification.
 
 class TestPlaywrightDemo:
 
