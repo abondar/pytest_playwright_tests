@@ -6,6 +6,9 @@ This project demonstrates some Playwright features for end-to-end test automatio
 
 The test code is intentionally simple. For that reason, it does not use Page Objects or other abstraction patterns — the goal is to showcase the project configuration and some core Playwright capabilities.
 
+## Example Text
+This README can be expanded with additional project notes, usage examples, or team-specific documentation as the test suite evolves.
+
 This project includes:
 
 - Frameworks:
