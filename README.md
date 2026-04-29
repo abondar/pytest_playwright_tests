@@ -67,6 +67,20 @@ $ make test
 $ make test-file
 ```
 
+## To run a specific test
+Use the full pytest node id when you want to run just one scenario:
+
+```bash
+$ uv run pytest -v test_playwright_demo.py::TestPlaywrightDemo::test_add_product_backpack
+```
+
+## To run tests by name
+Use `-k` to filter tests by part of the test name:
+
+```bash
+$ uv run pytest -v -k "backpack"
+```
+
 ## To run tests in Chrome (for headless mode remove --headed parameter)
 ```bash
 $ make test-headed
