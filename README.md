@@ -6,8 +6,8 @@ This project demonstrates some Playwright features for end-to-end test automatio
 
 The test code is intentionally simple. For that reason, it does not use Page Objects or other abstraction patterns — the goal is to showcase the project configuration and some core Playwright capabilities.
 
-## Example Text
-This README can be expanded with additional project notes, usage examples, or team-specific documentation as the test suite evolves.
+## Project Summary
+This repository is a lightweight Playwright + Pytest demo suite that exercises real browser flows against Sauce Demo and Danube Shop. It demonstrates how to reuse authenticated storage states through fixtures in `conftest.py`, keep tests isolated with fresh browser contexts, and validate both UI behavior and network responses. The suite also includes examples of API interception, mocked responses, screenshot capture, trace collection, and Allure-friendly failure diagnostics.
 
 This project includes:
 
